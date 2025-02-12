@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class PlaceResponseDto {
-    private int placeId;
+    private String placeId;
     private int categoryId;
     private String placeName;
     private String imageUrl;
@@ -18,7 +18,7 @@ public class PlaceResponseDto {
     private float starAverage;
 
     public PlaceResponseDto(Place place) {
-        this.placeId = place.getPlaceId();
+        this.placeId = String.valueOf(place.getPlaceId());
         this.categoryId = place.getCategoryId();
         this.placeName = place.getPlaceName();
         this.imageUrl = place.getImageUrl();

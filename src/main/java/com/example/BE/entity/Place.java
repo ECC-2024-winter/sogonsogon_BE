@@ -1,15 +1,15 @@
 package com.example.BE.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
-@Table(name = "PLACES")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Table(name = "PLACES")
 public class Place {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int placeId;
@@ -22,4 +22,5 @@ public class Place {
     private String contact;
     private int review; // 조회수
     private float starAverage; // 평균 별점
+
 }

@@ -1,7 +1,6 @@
 package com.example.BE.service;
 
 import com.example.BE.dto.PlaceResponseDto;
-import com.example.BE.entity.Place;
 import com.example.BE.repo.PlaceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
