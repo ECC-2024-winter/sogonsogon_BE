@@ -1,0 +1,6 @@
+spring:
+  security:
+    jwt:
+      header: Authorization
+      secret: ${JWT_SECRET}
+      token-validity-in-seconds: 604800
