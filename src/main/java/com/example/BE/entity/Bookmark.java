@@ -1,4 +1,4 @@
-package ecc_2024.sogonsogon.entity;
+package com.example.BE.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

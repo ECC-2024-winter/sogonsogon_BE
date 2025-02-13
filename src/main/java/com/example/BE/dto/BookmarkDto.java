@@ -1,6 +1,8 @@
-package ecc_2024.sogonsogon.dto;
+package com.example.BE.dto;
 
-import ecc_2024.sogonsogon.entity.Bookmark;
+import com.example.BE.entity.Bookmark;
+import com.example.BE.entity.Place;
+import com.example.BE.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

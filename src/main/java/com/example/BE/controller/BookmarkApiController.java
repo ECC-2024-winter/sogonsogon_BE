@@ -1,8 +1,8 @@
-package ecc_2024.sogonsogon.api;
+package com.example.BE.controller;
 
-import ecc_2024.sogonsogon.dto.BookmarkDto;
-import ecc_2024.sogonsogon.entity.Bookmark;
-import ecc_2024.sogonsogon.service.BookmarkService;
+import com.example.BE.dto.BookmarkDto;
+import com.example.BE.entity.Bookmark;
+import com.example.BE.service.BookmarkService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -4,7 +4,7 @@ import com.example.BE.dto.NicknameChangeDto;
 import com.example.BE.dto.PwChangeDto;
 import com.example.BE.entity.User;
 import com.example.BE.exception.UserNotFoundException;
-import com.example.BE.repo.UserRepository;
+import com.example.BE.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
