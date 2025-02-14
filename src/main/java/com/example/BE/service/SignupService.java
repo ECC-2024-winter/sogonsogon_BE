@@ -5,7 +5,7 @@ import com.example.BE.entity.Role;
 import com.example.BE.entity.User;
 import com.example.BE.exception.DuplicateIdException;
 import com.example.BE.exception.MissingUserInfoException;
-import com.example.BE.repo.UserRepository;
+import com.example.BE.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

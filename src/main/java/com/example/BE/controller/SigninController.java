@@ -4,7 +4,7 @@ import com.example.BE.dto.SigninRequestDto;
 import com.example.BE.entity.User;
 import com.example.BE.exception.UserNotFoundException;
 import com.example.BE.jwt.JwtTokenProvider;
-import com.example.BE.repo.UserRepository;
+import com.example.BE.repository.UserRepository;
 import com.example.BE.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
