@@ -1,34 +1,43 @@
 package ecc.sogonsogon.BE.service;
 
 import ecc.sogonsogon.BE.dto.PlaceResponseDto;
+import ecc.sogonsogon.BE.entity.Place;
 import ecc.sogonsogon.BE.repository.PlaceRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class PlaceService {
+
     private final PlaceRepository placeRepository;
 
-    public List<PlaceResponseDto> getTopViewedPlaces() {
-        return placeRepository.findTop3ByOrderByReviewDesc()
-                .stream()
+    @Autowired
+    public PlaceService(PlaceRepository placeRepository) {
+        this.placeRepository = placeRepository;
+    }
+
+    // 조회수 기준 Top3 조회
+    public List<PlaceResponseDto> getTop3ByReviews() {
+        List<Place> places = placeRepository.findTop3ByOrderByReviewsDesc();
+        return places.stream()
                 .map(PlaceResponseDto::new)
                 .collect(Collectors.toList());
     }
 
-    public List<PlaceResponseDto> getBestRatedRestaurants() {
-        return placeRepository.findTop3ByCategoryIdOrderByStarAverageDesc(1) // 맛집 categoryId = 1
-                .stream()
+    // 별점 기준 맛집 Best3 조회
+    public List<PlaceResponseDto> getTop3ByStarAverage() {
+        List<Place> places = placeRepository.findTop3ByOrderByStarAverageDesc();
+        return places.stream()
                 .map(PlaceResponseDto::new)
                 .collect(Collectors.toList());
     }
 
+    // 공연/연극 랜덤 3개 조회
     public List<PlaceResponseDto> getRandomPerformances() {
-        return placeRepository.findRandomPerformances(2, 3) // 공연 categoryId = 2, 연극 categoryId = 3
-                .stream()
+        List<Place> places = placeRepository.findRandomPerformances();
+        return places.stream()
                 .map(PlaceResponseDto::new)
                 .collect(Collectors.toList());
     }

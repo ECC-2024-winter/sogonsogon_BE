@@ -7,25 +7,15 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class PlaceResponseDto {
-    private int placeId;
-    private int categoryId;
-    private String placeName;
-    private String imageUrl;
-    private String address;
-    private String openTime;
-    private String contact;
-    private int review;
-    private float starAverage;
 
+    private String placeName;
+    private int reviews;  // 조회수
+    private double starAverage;  // 별점 평균
+
+    // Place 엔티티를 PlaceResponseDto로 변환하는 생성자
     public PlaceResponseDto(Place place) {
-        this.placeId = place.getPlaceId();
-        this.categoryId = place.getCategoryId();
         this.placeName = place.getPlaceName();
-        this.imageUrl = place.getImageUrl();
-        this.address = place.getAddress();
-        this.openTime = place.getOpenTime();
-        this.contact = place.getContact();
-        this.review = place.getReview();
+        this.reviews = place.getReviews();
         this.starAverage = place.getStarAverage();
     }
 }
