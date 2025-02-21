@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface FolderRepository extends JpaRepository<Folder, Integer> {
@@ -14,4 +15,6 @@ public interface FolderRepository extends JpaRepository<Folder, Integer> {
     ArrayList<Folder> findAll();
 
     List<Folder> findByUser(User user);
+
+    Optional<Folder> findByUeserAndFolderId(User user, Integer folderId);
 }

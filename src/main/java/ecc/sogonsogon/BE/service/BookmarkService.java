@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class BookmarkService {
@@ -42,5 +44,10 @@ public class BookmarkService {
 
         bookmarkRepository.delete(target);
         return target;
+    }
+
+    //저장 목록 내역 화면
+    public List<Bookmark> showBookmarksInFolder(Folder folder){
+        return bookmarkRepository.findByFolder(folder);
     }
 }
