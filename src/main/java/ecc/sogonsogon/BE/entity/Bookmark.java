@@ -29,7 +29,7 @@ public class Bookmark {
     @JoinColumn(name="folderId")
     private Folder folder;
 
-    public static Bookmark creteBookmark(BookmarkDto bookmarkDto, User user, Place place, Folder folder){
+    public static Bookmark createBookmark(BookmarkDto bookmarkDto, User user, Place place, Folder folder){
         return new Bookmark(
                 bookmarkDto.getBookmarkId(),
                 user,
