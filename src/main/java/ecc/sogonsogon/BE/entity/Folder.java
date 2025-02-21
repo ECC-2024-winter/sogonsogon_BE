@@ -1,5 +1,6 @@
 package ecc.sogonsogon.BE.entity;
 
+import ecc.sogonsogon.BE.dto.FolderDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,4 +23,13 @@ public class Folder {
     @ManyToOne //유저 한 명 당 folder 여러 개
     @JoinColumn(name="userId")
     private User user;
+
+
+    public static Folder createFolder(FolderDto folderDto, User user){
+        return new Folder(
+                folderDto.getFolderId(),
+                folderDto.getFolderName(),
+                user
+        );
+    }
 }

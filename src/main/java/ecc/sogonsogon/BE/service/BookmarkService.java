@@ -28,7 +28,7 @@ public class BookmarkService {
         Place place = placeRepository.findById(Long.valueOf(bookmarkDto.getPlaceId())).orElseThrow(() -> new IllegalArgumentException("장소를 찾을 수 없습니다."));
         Folder folder=folderRepository.findById(bookmarkDto.getFolderId()).orElseThrow(() -> new IllegalArgumentException("저장 목록을 찾을 수 없습니다."));
 
-        Bookmark bookmark = Bookmark.creteBookmark(bookmarkDto, user, place, folder);
+        Bookmark bookmark = Bookmark.createBookmark(bookmarkDto, user, place, folder);
 
         return bookmarkRepository.save(bookmark);
     }

@@ -42,4 +42,7 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, ecc.sogonsogon.BE.security.JwtAuthenticationFilter.class);  // JWT 인증 필터 추가
         return http.build();
     }
+
+
+
 }
