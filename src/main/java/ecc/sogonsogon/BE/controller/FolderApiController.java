@@ -50,4 +50,18 @@ public class FolderApiController {
                 ResponseEntity.status(HttpStatus.NO_CONTENT).build():
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
+    // 폴더 이름 변경
+    @PatchMapping("/folders/{id}")
+    public ResponseEntity<Folder> update(@RequestHeader("Authorization") String token, @PathVariable Integer id, @RequestBody FolderDto folderDto) {
+        String jwt = token.substring(7);
+        String email = jwtUtil.extractEmail(jwt);
+
+        User user = userService.findUserByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
+
+        Folder updated = folderService.update(user, id, folderDto);
+        return (updated!=null)?
+                ResponseEntity.status(HttpStatus.OK).body(updated):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 }

@@ -34,4 +34,21 @@ public class FolderService {
         folderRepository.delete(target);
         return target;
     }
+
+    public Folder update(User user, Integer id,FolderDto folderDto) {
+
+        Folder target=folderRepository.findById(id).orElse(null);
+        //3. 잘못된 요청 처리
+        if(target == null) {
+            return null;
+        }
+        //4. 업데이트 및 정상 응답
+        if (folderDto.getFolderName() != null) {
+            target.setFolderName(folderDto.getFolderName());
+        }
+        return folderRepository.save(target);
+
+    }
+
+
 }
