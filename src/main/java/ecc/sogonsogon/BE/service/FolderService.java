@@ -22,4 +22,16 @@ public class FolderService {
         Folder folder = Folder.createFolder(folderDto,user);
         return folderRepository.save(folder);
     }
+
+    public Folder delete(User user,Integer id) {
+        //1. 대상 찾기
+        Folder target = folderRepository.findById(id).orElse(null);
+        //2. 잘못된 요청 처리
+        if(target == null) {
+            return null;
+        }
+        //3. 대상 삭제
+        folderRepository.delete(target);
+        return target;
+    }
 }
