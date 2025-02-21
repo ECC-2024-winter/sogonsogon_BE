@@ -32,4 +32,15 @@ public class BookmarkService {
 
         return bookmarkRepository.save(bookmark);
     }
+
+    public Bookmark delete(User user, Integer id) {
+        Bookmark target = bookmarkRepository.findById(id).orElse(null);
+
+        if (target == null) {
+            return null;
+        }
+
+        bookmarkRepository.delete(target);
+        return target;
+    }
 }
