@@ -31,6 +31,7 @@ public class Place {
     private int review; // 조회수
     private float starAverage; // 평균 별점
 
+
     @PrePersist
     public void generatePlaceId() {
         if (placeId == null) {
