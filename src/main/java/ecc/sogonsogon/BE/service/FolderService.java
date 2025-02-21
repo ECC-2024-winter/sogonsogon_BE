@@ -8,6 +8,8 @@ import ecc.sogonsogon.BE.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FolderService {
     @Autowired
@@ -49,6 +51,8 @@ public class FolderService {
         return folderRepository.save(target);
 
     }
+
+    public List<Folder> showFolders(User user) {return folderRepository.findByUser(user);}
 
 
 }
