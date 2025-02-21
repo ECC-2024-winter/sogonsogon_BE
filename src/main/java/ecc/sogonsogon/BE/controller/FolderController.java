@@ -1,5 +1,6 @@
 package ecc.sogonsogon.BE.controller;
 
+import ecc.sogonsogon.BE.entity.Bookmark;
 import ecc.sogonsogon.BE.entity.Folder;
 import ecc.sogonsogon.BE.entity.User;
 import ecc.sogonsogon.BE.jwt.JwtTokenProvider;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -43,6 +45,22 @@ public class FolderController {
         //2. 모델에 데이터 등록하기
         model.addAttribute("folderList",folderEntityList);
         //3. 뷰 페이지 설정
+        return "";
+    }
+
+    @GetMapping("/folders/{id}")
+    public String showBookmarks(@RequestHeader("Authorization") String token,@PathVariable int id, Model model) {
+        String jwt = token.substring(7);
+        String email = jwtUtil.extractEmail(jwt);
+
+        User user = userService.findUserByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
+        //1. id 조회해 데이터 가져오기
+        Folder folderEntity = folderRepository.findByUeserAndFolderId(user,id).orElse(null);
+        List<Bookmark> bookmarks = bookmarkService.showBookmarksInFolder(folderEntity);
+        //2. 모델에 데이터 등록
+        model.addAttribute("folder",folderEntity);
+        model.addAttribute("bookmarks",bookmarks);
+        //3. 뷰 페이지 반환
         return "";
     }
 }
