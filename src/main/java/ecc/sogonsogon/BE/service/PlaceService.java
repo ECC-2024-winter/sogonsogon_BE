@@ -42,4 +42,7 @@ public class PlaceService {
                 .collect(Collectors.toList());
     }
 
+    public Place showPlacePageById(Integer placeId) {
+        return placeRepository.findById(Long.valueOf(placeId)).orElse(null);
+    }
 }
