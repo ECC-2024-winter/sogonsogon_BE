@@ -55,7 +55,7 @@ public class FolderController {
 
         User user = userService.findUserByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
         //1. id 조회해 데이터 가져오기
-        Folder folderEntity = folderRepository.findByUeserAndFolderId(user,id).orElse(null);
+        Folder folderEntity = folderRepository.findByUserAndFolderId(user,id).orElse(null);
         List<Bookmark> bookmarks = bookmarkService.showBookmarksInFolder(folderEntity);
         //2. 모델에 데이터 등록
         model.addAttribute("folder",folderEntity);
