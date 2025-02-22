@@ -20,7 +20,7 @@ public class PlaceService {
 
     // 조회수 기준 Top3 조회
     public List<PlaceResponseDto> getTop3ByReviews() {
-        List<Place> places = placeRepository.findTop3ByOrderByReviewsDesc();
+        List<Place> places = placeRepository.findTop3ByOrderByReviewDesc();
         return places.stream()
                 .map(PlaceResponseDto::new)
                 .collect(Collectors.toList());
@@ -28,7 +28,7 @@ public class PlaceService {
 
     // 별점 기준 맛집 Best3 조회
     public List<PlaceResponseDto> getTop3ByStarAverage() {
-        List<Place> places = placeRepository.findTop3ByOrderByStarAverageDesc();
+        List<Place> places = placeRepository.findTop3ByCategoryOrderByStarAverageDesc();
         return places.stream()
                 .map(PlaceResponseDto::new)
                 .collect(Collectors.toList());

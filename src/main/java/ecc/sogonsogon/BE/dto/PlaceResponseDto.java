@@ -15,7 +15,7 @@ public class PlaceResponseDto {
     // Place 엔티티를 PlaceResponseDto로 변환하는 생성자
     public PlaceResponseDto(Place place) {
         this.placeName = place.getPlaceName();
-        this.reviews = place.getReviews();
+        this.reviews = place.getReview();
         this.starAverage = place.getStarAverage();
     }
 }
