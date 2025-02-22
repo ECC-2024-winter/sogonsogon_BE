@@ -5,6 +5,7 @@ import ecc.sogonsogon.BE.entity.Category;
 import ecc.sogonsogon.BE.dto.PlaceResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,4 +24,8 @@ public interface PlaceRepository extends JpaRepository<Place, Long> {
     // 공연, 연극 랜덤 3
     @Query("SELECT p FROM Place p WHERE p.category IN (:performanceCategory, :theaterCategory) ORDER BY FUNCTION('RAND')")
     List<Place> findRandomPerformances(Category performanceCategory, Category theaterCategory);
+
+    //특정 카테고리명을 가진 장소 조회
+    @Query("SELECT p FROM Place p JOIN p.categories c WHERE c.categoryName IN :categoryNames GROUP BY p HAVING COUNT(DISTINCT c) = :size")
+    List<Place> findByCategoryNames(@Param("categoryNames") List<String> categoryNames, @Param("size") long size);
 }

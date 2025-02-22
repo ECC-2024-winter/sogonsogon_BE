@@ -1,7 +1,11 @@
 package ecc.sogonsogon.BE.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,4 +21,8 @@ public class Category {
 
     @Column(nullable = false, unique = true, length = 225)
     private String categoryName;
+
+    @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
+    private Set<Place> places = new HashSet<>();
 }
