@@ -47,7 +47,10 @@ public class BookmarkService {
     }
 
     //저장 목록 내역 화면
-    public List<Bookmark> showBookmarksInFolder(Folder folder){
+    public List<Bookmark> showBookmarksInFolder(User user, Folder folder){
+        if (!folder.getUser().equals(user)) {
+            throw new IllegalArgumentException("해당 저장 목록에 접근할 권한이 없습니다.");
+        }
         return bookmarkRepository.findByFolder(folder);
     }
 }
