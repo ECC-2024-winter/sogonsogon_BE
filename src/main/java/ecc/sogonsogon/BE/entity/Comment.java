@@ -1,36 +1,38 @@
 package ecc.sogonsogon.BE.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Table(name = "comments")
 public class Comment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String commentId;
-
-    @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
-    private User user;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    public String commentId;
 
     @ManyToOne
     @JoinColumn(name = "placeId", nullable = false)
-    private Place place;
+    private Place placeId;
 
-    @Column(nullable = false)
-    private int starRating; // 별점 (1~5)
+    private String userId;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private int starRating;
+
+    private String createdAt;
+
+    private String updatedAt;
+
+    public void updateContent(String content, int starRating) {
+        this.content = content;
+        this.starRating = starRating;
+    }
 }
