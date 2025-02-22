@@ -15,12 +15,4 @@ import lombok.ToString;
 public class FolderDto {
     private Integer folderId;
     private String folderName;
-
-    public static FolderDto createFolderDto(Folder folder) {
-        return new FolderDto(
-                folder.getFolderId(),
-                folder.getFolderName()
-        );
-    }
-
 }
