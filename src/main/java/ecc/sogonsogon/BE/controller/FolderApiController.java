@@ -3,9 +3,9 @@ package ecc.sogonsogon.BE.controller;
 import ecc.sogonsogon.BE.dto.FolderDto;
 import ecc.sogonsogon.BE.entity.Folder;
 import ecc.sogonsogon.BE.entity.User;
-import ecc.sogonsogon.BE.jwt.JwtTokenProvider;
+import ecc.sogonsogon.BE.repository.UserRepository;
+import ecc.sogonsogon.BE.security.JwtUtil;
 import ecc.sogonsogon.BE.service.FolderService;
-import ecc.sogonsogon.BE.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +17,9 @@ public class FolderApiController {
     @Autowired
     private FolderService folderService;
     @Autowired
-    private JwtTokenProvider jwtUtil;
+    private JwtUtil jwtUtil;
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
 
     // 폴더 생성
@@ -29,7 +29,7 @@ public class FolderApiController {
         String jwt = token.substring(7);
         String email = jwtUtil.extractEmail(jwt);
 
-        User user = userService.findUserByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
 
         Folder created =folderService.create(user,folderDto);
         return (created!=null)?
@@ -43,7 +43,7 @@ public class FolderApiController {
         String jwt = token.substring(7);
         String email = jwtUtil.extractEmail(jwt);
 
-        User user = userService.findUserByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
 
         Folder deleted = folderService.delete(user,id);
         return (deleted!=null) ?
@@ -57,7 +57,7 @@ public class FolderApiController {
         String jwt = token.substring(7);
         String email = jwtUtil.extractEmail(jwt);
 
-        User user = userService.findUserByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
 
         Folder updated = folderService.update(user, id, folderDto);
         return (updated!=null)?

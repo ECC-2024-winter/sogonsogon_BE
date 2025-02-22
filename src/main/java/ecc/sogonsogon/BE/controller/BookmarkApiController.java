@@ -3,9 +3,9 @@ package ecc.sogonsogon.BE.controller;
 import ecc.sogonsogon.BE.dto.BookmarkDto;
 import ecc.sogonsogon.BE.entity.Bookmark;
 import ecc.sogonsogon.BE.entity.User;
-import ecc.sogonsogon.BE.jwt.JwtTokenProvider;
+import ecc.sogonsogon.BE.repository.UserRepository;
+import ecc.sogonsogon.BE.security.JwtUtil;
 import ecc.sogonsogon.BE.service.BookmarkService;
-import ecc.sogonsogon.BE.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,9 +19,9 @@ public class BookmarkApiController {
     @Autowired
     private BookmarkService bookmarkService;
     @Autowired
-    private JwtTokenProvider jwtUtil;
+    private JwtUtil jwtUtil;
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
     @PostMapping("/bookmarks")
     public ResponseEntity<Bookmark> save(@RequestHeader("Authorization") String token, @RequestBody BookmarkDto bookmarkDto) {
@@ -29,7 +29,7 @@ public class BookmarkApiController {
         String jwt = token.substring(7);
         String email = jwtUtil.extractEmail(jwt);
 
-        User user = userService.findUserByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
 
         Bookmark saved = bookmarkService.save(user, bookmarkDto);
         return (saved!=null) ?
@@ -43,7 +43,7 @@ public class BookmarkApiController {
         String jwt = token.substring(7);
         String email = jwtUtil.extractEmail(jwt);
 
-        User user = userService.findUserByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 유저를 찾을 수 없습니다."));
 
         Bookmark deleted = bookmarkService.delete(user, id);
         return (deleted!=null)?

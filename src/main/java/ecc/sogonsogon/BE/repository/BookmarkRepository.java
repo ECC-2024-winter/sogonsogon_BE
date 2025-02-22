@@ -2,7 +2,6 @@ package ecc.sogonsogon.BE.repository;
 
 import ecc.sogonsogon.BE.entity.Bookmark;
 import ecc.sogonsogon.BE.entity.Folder;
-import ecc.sogonsogon.BE.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

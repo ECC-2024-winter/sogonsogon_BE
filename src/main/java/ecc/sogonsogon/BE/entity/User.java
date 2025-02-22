@@ -1,36 +1,24 @@
 package ecc.sogonsogon.BE.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-import java.util.UUID;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Entity
 @Table(name = "users")
 public class User {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String userId;
 
-    @Column(nullable = false, unique = true, length = 225)
-    private String nickname;
-
-    @Column(nullable = false, unique = true, length = 225)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, length = 225)
+    @Column(nullable = false)
     private String password;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Role role;
-
-    @PrePersist
-    public void generateUserId() {
-        this.userId = UUID.randomUUID().toString();
-    }
+    @Column(nullable = false)
+    private String nickname;
 }

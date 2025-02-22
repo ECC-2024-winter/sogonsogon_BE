@@ -1,6 +1,5 @@
 package ecc.sogonsogon.BE.dto;
 
-import ecc.sogonsogon.BE.entity.Bookmark;
 import lombok.*;
 
 @AllArgsConstructor

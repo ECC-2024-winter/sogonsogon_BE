@@ -2,7 +2,6 @@ package ecc.sogonsogon.BE.repository;
 
 import ecc.sogonsogon.BE.entity.Place;
 import ecc.sogonsogon.BE.entity.Category;
-import ecc.sogonsogon.BE.dto.PlaceResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
