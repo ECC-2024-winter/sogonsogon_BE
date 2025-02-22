@@ -41,4 +41,5 @@ public class PlaceService {
                 .map(PlaceResponseDto::new)
                 .collect(Collectors.toList());
     }
+
 }

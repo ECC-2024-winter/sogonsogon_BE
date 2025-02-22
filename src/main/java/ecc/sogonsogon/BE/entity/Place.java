@@ -2,6 +2,9 @@ package ecc.sogonsogon.BE.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -16,9 +19,6 @@ public class Place {
     @GeneratedValue(strategy = GenerationType.AUTO)  // 자동으로 UUID를 생성하도록 설정
     private String placeId;
 
-    @ManyToOne
-    @JoinColumn(name = "categoryId", nullable = false)
-    private Category categoryId;
 
     @Column(nullable = false, length = 225)
     private String placeName;
@@ -38,4 +38,12 @@ public class Place {
             placeId = UUID.randomUUID().toString();
         }
     }
+
+    @ManyToMany
+    @JoinTable(
+            name = "place_category",
+            joinColumns = @JoinColumn(name = "place_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories = new HashSet<>();
 }
