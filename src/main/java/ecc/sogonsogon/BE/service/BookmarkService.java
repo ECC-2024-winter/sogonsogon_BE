@@ -38,8 +38,8 @@ public class BookmarkService {
     public Bookmark delete(User user, Integer id) {
         Bookmark target = bookmarkRepository.findById(id).orElse(null);
 
-        if (target == null) {
-            return null;
+        if (target == null || !target.getUser().equals(user)) {
+            throw new IllegalArgumentException("삭제할 수 없습니다.");
         }
 
         bookmarkRepository.delete(target);
