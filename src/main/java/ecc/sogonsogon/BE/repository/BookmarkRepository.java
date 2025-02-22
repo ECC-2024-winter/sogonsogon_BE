@@ -10,7 +10,5 @@ import java.util.List;
 
 @Repository
 public interface BookmarkRepository extends JpaRepository<Bookmark, Integer> {
-    List<Bookmark> findByUser(User user);
-
     List<Bookmark> findByFolder(Folder folder);
 }
