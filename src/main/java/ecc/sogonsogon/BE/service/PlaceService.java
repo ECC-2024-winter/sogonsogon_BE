@@ -26,21 +26,21 @@ public class PlaceService {
                 .collect(Collectors.toList());
     }
 
-    // 별점 기준 맛집 Best3 조회
-    public List<PlaceResponseDto> getTop3ByStarAverage() {
-        List<Place> places = placeRepository.findTop3ByCategoryOrderByStarAverageDesc();
-        return places.stream()
-                .map(PlaceResponseDto::new)
-                .collect(Collectors.toList());
-    }
-
-    // 공연/연극 랜덤 3개 조회
-    public List<PlaceResponseDto> getRandomPerformances() {
-        List<Place> places = placeRepository.findRandomPerformances();
-        return places.stream()
-                .map(PlaceResponseDto::new)
-                .collect(Collectors.toList());
-    }
+//    // 별점 기준 맛집 Best3 조회
+//    public List<PlaceResponseDto> getTop3ByStarAverage() {
+//        List<Place> places = placeRepository.findTop3ByCategoryOrderByStarAverageDesc();
+//        return places.stream()
+//                .map(PlaceResponseDto::new)
+//                .collect(Collectors.toList());
+//    }
+//
+//    // 공연/연극 랜덤 3개 조회
+//    public List<PlaceResponseDto> getRandomPerformances() {
+//        List<Place> places = placeRepository.findRandomPerformances();
+//        return places.stream()
+//                .map(PlaceResponseDto::new)
+//                .collect(Collectors.toList());
+//    }
 
     public Place showPlacePageById(Integer placeId) {
         return placeRepository.findById(Long.valueOf(placeId)).orElse(null);
