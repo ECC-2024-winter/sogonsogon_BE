@@ -49,3 +49,9 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+springBoot {
+	mainClass = 'com.your.package.YourApplication'
+	mainClassName = 'com.your.package.YourApplication'
+}
+
