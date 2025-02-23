@@ -11,7 +11,6 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Table(name = "places")
 public class Place {
 
