@@ -20,7 +20,7 @@ public class PlaceService {
 
     // 조회수 기준 Top3 조회
     public List<PlaceResponseDto> getTop3ByReviews() {
-        List<Place> places = placeRepository.findTop3ByReview();
+        List<Place> places = placeRepository.findTop3ByOrderByReviewDesc();
         return places.stream()
                 .map(PlaceResponseDto::new)
                 .collect(Collectors.toList());
@@ -28,7 +28,7 @@ public class PlaceService {
 
     // 별점 기준 맛집 Best3 조회
     public List<PlaceResponseDto> getTop3ByStarAverage() {
-        List<Place> places = placeRepository.findBest3Restaurants();
+        List<Place> places = placeRepository.findTop3ByCategoryOrderByStarAverageDesc();
         return places.stream()
                 .map(PlaceResponseDto::new)
                 .collect(Collectors.toList());
@@ -36,13 +36,13 @@ public class PlaceService {
 
     // 공연/연극 랜덤 3개 조회
     public List<PlaceResponseDto> getRandomPerformances() {
-        List<Place> places = placeRepository.findRandomShows();
+        List<Place> places = placeRepository.findRandomPerformances();
         return places.stream()
                 .map(PlaceResponseDto::new)
                 .collect(Collectors.toList());
     }
 
     public Place showPlacePageById(Integer placeId) {
-        return placeRepository.findById(String.valueOf(placeId)).orElse(null);
+        return placeRepository.findById(Long.valueOf(placeId)).orElse(null);
     }
 }
